@@ -33,18 +33,24 @@ def read_shoes_data():
     data to create one object of shoes. You must use the try-except in this function
     for error handling. Remember to skip the first line using your code.
     '''
+    def read_shoes_data():
     try:
         with open("inventory.txt", "r") as file:
-            # Skip the first line
             next(file) 
             for line in file:
                 temp = line.strip().split(", ")
-                shoe_list.append(Shoe(temp[0], temp[1], temp[2], float(temp[3]), int(temp[4])))
+                if len(temp) == 5:
+                    shoe_list.append(Shoe(temp[0], temp[1], temp[2], float(temp[3]), int(temp[4])))
+                else:
+                    print("Invalid data format in inventory file:", line)
         print("Data successfully loaded from inventory.txt.")
     except FileNotFoundError:
-        print("File not found.")
+        print("Error: Inventory file not found.")
+    except ValueError as e:
+        print("Error:", e)
     except Exception as e:
-        print("An error occurred:", str(e))
+        print("An unexpected error occurred:", e)
+
 
 def capture_shoes():
     '''
