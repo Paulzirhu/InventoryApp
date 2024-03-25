@@ -31,7 +31,7 @@ def read_shoes_data():
     and read the data from this file, then create a shoes object with this data
     and append this object into the shoes list. One line in this file represents
     data to create one object of shoes. You must use the try-except in this function
-    for error handling. Remember to skip the first line using your code.
+    for error handling. Remember to skip the first line using your code
     '''
     def read_shoes_data():
     try:
