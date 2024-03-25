@@ -53,25 +53,33 @@ def read_shoes_data():
 
 
 def capture_shoes():
-    '''
-    This function will allow a user to capture data
-    about a shoe and use this data to create a shoe object
-    and append this object inside the shoe list.
-    '''
+    """
+    Capture data about a new shoe from the user and add it to the shoe list.
+
+    This function prompts the user to enter details of a new shoe,
+    validates the input, creates a Shoe object, and adds it to the shoe_list.
+
+    Raises:
+        ValueError: If user input is invalid.
+        Exception: For any other unexpected errors.
+    """
     try:
         country = input("Please enter country: ")
         code = input("Please enter code: ")
         product = input("Please enter product: ")
         cost = float(input("Please enter cost: "))
+        if cost < 0:
+            raise ValueError("Cost cannot be negative.")
         quantity = int(input("Please enter quantity: "))
+        if quantity < 0:
+            raise ValueError("Quantity cannot be negative.")
         
-        # Create a new Shoe object and append it to shoe_list
         shoe_list.append(Shoe(country, code, product, cost, quantity))
         print("Shoe data captured successfully.")
-    except ValueError:
-        print("Invalid input for cost or quantity. Please enter a valid number.")
+    except ValueError as e:
+        print("Invalid input:", e)
     except Exception as e:
-        print("An error occurred while capturing shoe data:", str(e))
+        print("An unexpected error occurred:", e)
 
 def view_all():
     '''
